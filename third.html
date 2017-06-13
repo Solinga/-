@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// function add(a,b){
+		// 	alert(a+b);
+		// }
+		// function jian(a,b) {
+		// 	alert(a-b);
+		// }
+		// add(5,4);
+		// 变形01
+		// add.call(jian,5,4);
+
+		function class1() {
+			this.name="class1";
+			this.showName=function(){
+				alert(this.name);
+			}
+		}
+		function class2(){
+			this.name="第二个";
+		}
+		var c1=new class1;
+		var c2=new class2;
+		c1.showName.call(c2);//把c1的方法放到c2对象上执行
+		// 原来的c2上没有showName方法
+		// 但是由于c1的方法在c2上执行了,所以传进了showname里面的this指向c2，this.name就是c2的
+		// 
+		// 
+		// 
+		
+		var num=100;
+		function foo(){
+			this.num=200;			
+		}
+		foo.prototype={
+			method:function(){
+				return function(){
+					console.log(this.num);
+				};
+			}
+		}
+		var tem=new foo();
+		tem.method()();
+
+
+		function num(){
+			var num=666;
+			var sayalert=function(){
+				alert(num);
+			}
+			num++;
+			return sayalert;
+		}
+		var sayalert=num();
+		sayalert();
+	</script>
+</body>
+</html>

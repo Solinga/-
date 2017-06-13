@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>创建对象的方式</title>
+</head>
+<body>
+	<script type="text/javascript">
+			// 3.构造函数创建对象
+			// 3.1创建构造函数
+			// 3.2利用构造函数创建对象
+				// 1.创建空对象new obj={}
+				// 2.用空对象来调用构造函数
+				// 3.(原型)新的对象的_proto_属性直接指向构造函数prototype这个对象
+				// 4.返回新的对象地址
+				// 
+				//js中，函数本身包含了方法和属性，
+				//每个函数当中，都有一个prototype的属性，而这个属性引用的就是原型对象
+				//student 这个构造函数有一个原型属性，叫做prototype
+				//student是一个类
+				//zhangsan是student的一个实例对象
+				//结论：实例化对象有一个_proto_的属性。
+				//在控制台中输入：zhansan._proto_得出的是zhangsan的爹student
+				//student为构造函数，prototype是student的对象
+				//zhangsan是student的实例化对象
+				//
+				//
+			function student(sname,age){
+				this.aname=sname;
+				this.age=age;
+				// this.money=1000;
+				this.intrself=function(){
+				alert("i am"+this.sname";i am"+this.age);
+				}
+			}
+			var zhangsan=new student("zhangsan",50);
+			var lisi=new student("lisi",20);
+			// 通过原型链附有的变量，节省了空间
+			//结论：构造函数的原型对象，他们负责保存所有子对象共享的成员变量
+			//建议：所有的子对象共享的成员变量或者方法，都应该定义在构造函数的原型对象中，避免重复定义方法对象，浪费内存，
+			//js中的继承都是使用原型对象实现的
+			//js内置对象类型的API都是定义在类型prototype里
+			//
+			student.prototype.money=1000;
+	</script>
+	<button onclick="zhangsan.intrself()">zhangsan</button>
+	<button onclick="lisi.intrself()">lisi</button>
+</body>
+</html>
